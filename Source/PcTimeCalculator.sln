@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PcTimeCalculator", "PcTimeCalculator\PcTimeCalculator.csproj", "{B97F4F93-9EA6-4C1C-9F97-4250B8C4EE6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B97F4F93-9EA6-4C1C-9F97-4250B8C4EE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97F4F93-9EA6-4C1C-9F97-4250B8C4EE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97F4F93-9EA6-4C1C-9F97-4250B8C4EE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97F4F93-9EA6-4C1C-9F97-4250B8C4EE6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B6AC384-060F-4F60-A048-16D1BC25F198}
+	EndGlobalSection
+EndGlobal
