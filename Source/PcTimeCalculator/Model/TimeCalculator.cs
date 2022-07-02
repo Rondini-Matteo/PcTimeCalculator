@@ -1,4 +1,6 @@
-﻿namespace PcTimeCalculator.Model
+﻿using System.Text.Json;
+
+namespace PcTimeCalculator.Model
 {
     public class TimeCalculator : ITimeCalculator
     {
@@ -12,8 +14,7 @@
 
         public TimeCalculator()
         {
-            WorkTimeDuration = 7200;
-            PauseDuration = 900;
+            LoadConfiguration();
         }
 
         public void StartToWork()
@@ -42,6 +43,28 @@
         public bool IsTimeToGoBackToWork()
         {
             return (DateTime.Now - BreakTimeEnd).TotalMilliseconds > 0;
+        }
+
+        private void LoadConfiguration()
+        {
+            string configPath = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Config\\Configuration.json");
+
+            if (File.Exists(configPath))
+            {
+                Configuration? configuration = JsonSerializer.Deserialize<Configuration>(File.ReadAllText(configPath));
+
+                if (configuration != null)
+                {
+                    WorkTimeDuration = configuration.WorkTimeDuration;
+                    PauseDuration = configuration.PauseDuration;
+                }
+                else
+                {
+                    //Default value
+                    WorkTimeDuration = 7200;
+                    PauseDuration = 900;
+                }
+            }
         }
 
     }
