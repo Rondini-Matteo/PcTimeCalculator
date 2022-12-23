@@ -9,6 +9,7 @@
     <BaseOutputPath>Exe\</BaseOutputPath>
     <Company>Matteo Rondini</Company>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <StartupObject>PcTimeCalculator.Program</StartupObject>
   </PropertyGroup>
 
 </Project>
