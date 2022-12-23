@@ -49,21 +49,24 @@ namespace PcTimeCalculator.Model
         {
             string configPath = Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\Config\\Configuration.json");
 
+            Configuration? configuration = null;
+
             if (File.Exists(configPath))
             {
-                Configuration? configuration = JsonSerializer.Deserialize<Configuration>(File.ReadAllText(configPath));
+                configuration = JsonSerializer.Deserialize<Configuration>(File.ReadAllText(configPath));
 
                 if (configuration != null)
                 {
                     WorkTimeDuration = configuration.WorkTimeDuration;
                     PauseDuration = configuration.PauseDuration;
                 }
-                else
-                {
-                    //Default value
-                    WorkTimeDuration = 7200;
-                    PauseDuration = 900;
-                }
+            }
+
+            if(configuration == null)
+            {
+                //Default value
+                WorkTimeDuration = 7200;
+                PauseDuration = 900;
             }
         }
 
