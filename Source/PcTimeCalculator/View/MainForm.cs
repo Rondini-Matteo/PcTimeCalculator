@@ -4,6 +4,8 @@
     {
         private Controller controller;
 
+        private delegate void voidMethodDelegate();
+
         public MainForm()
         {
             InitializeComponent();
@@ -30,7 +32,7 @@
                 lblStatus.BackColor = Color.OrangeRed;
                 btnStartToWork.Enabled = false;
                 btnTakeABreak.Enabled = true;
-                UpdateLabelsText();
+                ShowWorkTime();
             }
             else BeginInvoke(Controller_OnPauseEnded);
         }
@@ -43,7 +45,10 @@
                 lblStatus.BackColor = Color.LimeGreen;
                 btnStartToWork.Enabled = true;
                 btnTakeABreak.Enabled = false;
-                UpdateLabelsText();
+                ShowPauseTime();
+                
+                Activate();
+                BringToFront();
             }
             else BeginInvoke(Controller_OnPauseStarted);
         }
@@ -60,12 +65,28 @@
             Controller_OnPauseEnded();
         }
 
-        private void UpdateLabelsText()
+        private void ShowWorkTime()
         {
-            lblWorkTimeStart.Text = controller.GetWorkTimeStart().ToLongTimeString();
-            lblWorkTimeEnd.Text = controller.GetWorkTimeEnd().ToLongTimeString();
-            lblPauseTimeStart.Text = controller.GetPauseTimeStart().ToLongTimeString();
-            lblPauseTimeEnd.Text = controller.GetPauseTimeEnd().ToLongTimeString();
+            if (!InvokeRequired)
+            {
+                lblWorkTimeStart.Text = controller.GetWorkTimeStart().ToLongTimeString();
+                lblWorkTimeEnd.Text = controller.GetWorkTimeEnd().ToLongTimeString();
+                lblPauseTimeStart.Text = string.Empty;
+                lblPauseTimeEnd.Text = string.Empty;
+            }
+            else BeginInvoke(new voidMethodDelegate(ShowWorkTime));
+        }
+
+        private void ShowPauseTime()
+        {
+            if (!InvokeRequired)
+            {
+                lblWorkTimeStart.Text = string.Empty;
+                lblWorkTimeEnd.Text = string.Empty;
+                lblPauseTimeStart.Text = controller.GetPauseTimeStart().ToLongTimeString();
+                lblPauseTimeEnd.Text = controller.GetPauseTimeEnd().ToLongTimeString();
+            }
+            else BeginInvoke(new voidMethodDelegate(ShowWorkTime));
         }
 
     }
