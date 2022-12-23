@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PcTimeCalculator", "PcTimeCalculator\PcTimeCalculator.csproj", "{B97F4F93-9EA6-4C1C-9F97-4250B8C4EE6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PcTimeCalculatorTest", "PcTimeCalculatorTest\PcTimeCalculatorTest.csproj", "{15F792A2-CA08-4436-9649-FFC03603D5D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B97F4F93-9EA6-4C1C-9F97-4250B8C4EE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B97F4F93-9EA6-4C1C-9F97-4250B8C4EE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B97F4F93-9EA6-4C1C-9F97-4250B8C4EE6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15F792A2-CA08-4436-9649-FFC03603D5D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15F792A2-CA08-4436-9649-FFC03603D5D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15F792A2-CA08-4436-9649-FFC03603D5D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15F792A2-CA08-4436-9649-FFC03603D5D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
