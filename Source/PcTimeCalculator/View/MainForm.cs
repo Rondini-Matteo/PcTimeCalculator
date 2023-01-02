@@ -1,4 +1,6 @@
-﻿namespace PcTimeCalculator.View
+﻿using System.Media;
+
+namespace PcTimeCalculator.View
 {
     public partial class MainForm : Form
     {
@@ -22,6 +24,9 @@
         private void MainForm_Disposed(object? sender, EventArgs e)
         {
             controller.ApplicationRunning = false;
+            timerProgressBar.Stop();
+            timerProgressBar.Enabled = false;
+            timerProgressBar.Dispose();
         }
 
         private void Controller_OnPauseEnded()
@@ -32,7 +37,9 @@
                 lblStatus.BackColor = Color.OrangeRed;
                 btnStartToWork.Enabled = false;
                 btnTakeABreak.Enabled = true;
+
                 ShowWorkTime();
+                StartProgressBar((int)controller.GetWorkTimeDuration());
             }
             else BeginInvoke(Controller_OnPauseEnded);
         }
@@ -45,8 +52,12 @@
                 lblStatus.BackColor = Color.LimeGreen;
                 btnStartToWork.Enabled = true;
                 btnTakeABreak.Enabled = false;
+
+                SystemSounds.Exclamation.Play();
+
                 ShowPauseTime();
-                
+                StartProgressBar((int)controller.GetPauseDuration());
+
                 Activate();
                 BringToFront();
             }
@@ -89,5 +100,24 @@
             else BeginInvoke(new voidMethodDelegate(ShowWorkTime));
         }
 
+        private void StartProgressBar(int maximum)
+        {
+            progressBar.Value = 0;
+            progressBar.Maximum = maximum;
+            timerProgressBar.Start();
+        }
+
+        private void TimerProgressBar_Tick(object sender, EventArgs e)
+        {
+            if (!InvokeRequired)
+            {
+                progressBar.Increment(1);
+
+                if (progressBar.Value == progressBar.Maximum)
+                    timerProgressBar.Stop();
+            }
+            else
+                BeginInvoke(TimerProgressBar_Tick);
+        }
     }
 }

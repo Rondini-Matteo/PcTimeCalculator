@@ -42,6 +42,16 @@
             return calculator.BreakTimeEnd.ToLocalTime();
         }
 
+        public double GetWorkTimeDuration()
+        {
+            return calculator.WorkTimeDuration;
+        }
+
+        public double GetPauseDuration()
+        {
+            return calculator.PauseDuration;
+        }
+
         #endregion
 
         public void StartToWork()
