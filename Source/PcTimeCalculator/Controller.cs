@@ -66,7 +66,7 @@
 
         private void CheckTime()
         {
-            Thread t = new Thread(() =>
+            Task.Factory.StartNew(() =>
             {
                 while (ApplicationRunning)
                 {
@@ -85,8 +85,6 @@
                     Thread.Sleep(1000);
                 }
             });
-
-            t.Start();
         }
 
     }
