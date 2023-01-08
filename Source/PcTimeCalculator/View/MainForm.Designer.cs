@@ -337,6 +337,7 @@
             this.ClientSize = new System.Drawing.Size(802, 463);
             this.Controls.Add(this.tlpGeneral);
             this.Name = "MainForm";
+            this.ShowIcon = false;
             this.Text = "PC Time Calculator";
             this.tlpGeneral.ResumeLayout(false);
             this.groupBoxWorkTime.ResumeLayout(false);

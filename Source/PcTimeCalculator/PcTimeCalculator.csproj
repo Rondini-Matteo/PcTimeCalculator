@@ -10,6 +10,11 @@
     <Company>Matteo Rondini</Company>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
     <StartupObject>PcTimeCalculator.Program</StartupObject>
+    <ApplicationIcon>MR Icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="MR Icon.ico" />
+  </ItemGroup>
 
 </Project>
