@@ -5,6 +5,7 @@ namespace PcTimeCalculator.View
     public partial class MainForm : Form
     {
         private Controller controller;
+        private LoggerViewer loggerViewer;
 
         private delegate void voidMethodDelegate();
 
@@ -15,9 +16,12 @@ namespace PcTimeCalculator.View
             this.Disposed += MainForm_Disposed;
 
             controller = new Controller();
+            
+            loggerViewer = new LoggerViewer(controller.GetLogger());
 
             controller.OnPauseStarted += Controller_OnPauseStarted;
             controller.OnPauseEnded += Controller_OnPauseEnded;
+            controller.OnUserInactivity += Controller_OnUserInactivity;
             Controller_OnPauseEnded();
         }
 
@@ -64,16 +68,30 @@ namespace PcTimeCalculator.View
             else BeginInvoke(Controller_OnPauseStarted);
         }
 
+        private void Controller_OnUserInactivity()
+        {
+            if (!InvokeRequired)
+            {
+                lblStatus.Text = "INACTIVITY";
+                lblStatus.BackColor = Color.LimeGreen;
+                btnStartToWork.Enabled = true;
+                btnTakeABreak.Enabled = false;
+
+                ShowNoTime();
+                progressBar.Value = 0;
+                timerProgressBar.Stop();
+            }
+            else BeginInvoke(Controller_OnUserInactivity);
+        }
+
         private void BtnTakeABreak_Click(object sender, EventArgs e)
         {
             controller.TakeABreak();
-            Controller_OnPauseStarted();
         }
 
         private void BtnStartToWork_Click(object sender, EventArgs e)
         {
             controller.StartToWork();
-            Controller_OnPauseEnded();
         }
 
         private void ShowWorkTime()
@@ -100,6 +118,18 @@ namespace PcTimeCalculator.View
             else BeginInvoke(new voidMethodDelegate(ShowWorkTime));
         }
 
+        private void ShowNoTime()
+        {
+            if (!InvokeRequired)
+            {
+                lblWorkTimeStart.Text = string.Empty;
+                lblWorkTimeEnd.Text = string.Empty;
+                lblPauseTimeStart.Text = string.Empty;
+                lblPauseTimeEnd.Text = string.Empty;
+            }
+            else BeginInvoke(new voidMethodDelegate(ShowNoTime));
+        }
+
         private void StartProgressBar(int maximum)
         {
             progressBar.Value = 0;
@@ -119,5 +149,15 @@ namespace PcTimeCalculator.View
             else
                 BeginInvoke(TimerProgressBar_Tick);
         }
+
+        private void LblStatus_Click(object sender, EventArgs e)
+        {
+            if (loggerViewer != null)
+            {
+                loggerViewer.LoadHistory();
+                loggerViewer.Show(this);
+            }
+        }
+
     }
 }

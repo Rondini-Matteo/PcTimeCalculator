@@ -300,6 +300,7 @@
             this.lblStatus.TabIndex = 1;
             this.lblStatus.Text = "Status";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblStatus.Click += new System.EventHandler(this.LblStatus_Click);
             // 
             // btnStartToWork
             // 
