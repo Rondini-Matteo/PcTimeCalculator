@@ -17,4 +17,8 @@
     <Content Include="MR Icon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
 </Project>
