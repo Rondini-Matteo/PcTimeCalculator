@@ -12,6 +12,8 @@ namespace PcTimeCalculator.Model
         public DateTime BreakTimeEnd { get; private set; }
         public double PauseDuration { get; private set; }
 
+        private object _lock = new();
+
         public TimeCalculator()
         {
             LoadConfiguration();
@@ -19,30 +21,42 @@ namespace PcTimeCalculator.Model
 
         public void StartToWork()
         {
-            WorkTimeStart = DateTime.Now;
-            WorkTimeEnd = WorkTimeStart.AddSeconds(WorkTimeDuration);
+            lock (_lock)
+            {
+                WorkTimeStart = DateTime.Now;
+                WorkTimeEnd = WorkTimeStart.AddSeconds(WorkTimeDuration);
 
-            BreakTimeStart = WorkTimeStart.AddSeconds(WorkTimeDuration);
-            BreakTimeEnd = BreakTimeStart.AddSeconds(PauseDuration);
+                BreakTimeStart = WorkTimeStart.AddSeconds(WorkTimeDuration);
+                BreakTimeEnd = BreakTimeStart.AddSeconds(PauseDuration);
+            }
         }
 
         public void TakeABreak()
         {
-            WorkTimeStart = DateTime.Now.AddSeconds(PauseDuration);
-            WorkTimeEnd = WorkTimeStart.AddSeconds(WorkTimeDuration);
+            lock(_lock)
+            {
+                WorkTimeStart = DateTime.Now.AddSeconds(PauseDuration);
+                WorkTimeEnd = WorkTimeStart.AddSeconds(WorkTimeDuration);
 
-            BreakTimeStart = DateTime.Now;
-            BreakTimeEnd = BreakTimeStart.AddSeconds(PauseDuration);
+                BreakTimeStart = DateTime.Now;
+                BreakTimeEnd = BreakTimeStart.AddSeconds(PauseDuration);
+            }
         }
 
         public bool IsTimeToTakeABreak()
         {
-            return (DateTime.Now - WorkTimeEnd).TotalMilliseconds > 0;
+            lock (_lock)
+            {
+                return (DateTime.Now - WorkTimeEnd).TotalMilliseconds > 0;
+            }
         }
 
         public bool IsTimeToGoBackToWork()
         {
-            return (DateTime.Now - BreakTimeEnd).TotalMilliseconds > 0;
+            lock (_lock)
+            {
+                return (DateTime.Now - BreakTimeEnd).TotalMilliseconds > 0;
+            }
         }
 
         private void LoadConfiguration()
@@ -62,7 +76,7 @@ namespace PcTimeCalculator.Model
                 }
             }
 
-            if(configuration == null)
+            if (configuration == null)
             {
                 //Default value
                 WorkTimeDuration = 7200;
