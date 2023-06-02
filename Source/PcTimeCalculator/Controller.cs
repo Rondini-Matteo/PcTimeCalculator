@@ -1,23 +1,37 @@
-﻿namespace PcTimeCalculator
+﻿using PcTimeCalculator.Logger;
+using PcTimeCalculator.Model;
+
+namespace PcTimeCalculator
 {
     public class Controller
     {
         public delegate void OnPauseStartedDelegate();
         public delegate void OnPauseEndedDelegate();
+        public delegate void OnUserInactivityDelegate();
 
         public event OnPauseStartedDelegate? OnPauseStarted;
         public event OnPauseEndedDelegate? OnPauseEnded;
+        public event OnUserInactivityDelegate? OnUserInactivity;
 
         public bool ApplicationRunning { get; set; }
+        public bool IsUserInactive { get; private set; }
+        private bool isStartToWorkRequired;
 
-        private Model.ITimeCalculator calculator;
+        private ITimeCalculator calculator;
+        private ILogger logger;
 
         public Controller()
         {
             calculator = new Model.TimeCalculator();
+            logger = new MemoryLogger();
+
             ApplicationRunning = true;
+            IsUserInactive = false;
+            isStartToWorkRequired = false;
+
             StartToWork();
             CheckTime();
+            CheckUserActivity();
         }
 
         #region Getters
@@ -52,16 +66,25 @@
             return calculator.PauseDuration;
         }
 
+        public ILogger GetLogger()
+        {
+            return logger;
+        }
+
         #endregion
 
         public void StartToWork()
         {
             calculator.StartToWork();
+            OnPauseEnded?.Invoke();
+            logger.Info("StartToWork()");
         }
 
         public void TakeABreak()
         {
             calculator.TakeABreak();
+            OnPauseStarted?.Invoke();
+            logger.Info("TakeABreak()");
         }
 
         private void CheckTime()
@@ -70,19 +93,49 @@
             {
                 while (ApplicationRunning)
                 {
-                    if (calculator.IsTimeToTakeABreak())
+                    if (!IsUserInactive)
                     {
-                        TakeABreak();
-                        OnPauseStarted?.Invoke();
-                    }
+                        if (calculator.IsTimeToTakeABreak())
+                            TakeABreak();
 
-                    if (calculator.IsTimeToGoBackToWork())
-                    {
-                        StartToWork();
-                        OnPauseEnded?.Invoke();
+                        if (calculator.IsTimeToGoBackToWork())
+                            StartToWork();
                     }
 
                     Thread.Sleep(1000);
+                }
+            });
+        }
+
+        private void CheckUserActivity()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                while (ApplicationRunning)
+                {
+                    TimeSpan timespent = TimeSpan.FromMilliseconds(UserActivity.GetLastActivity());
+
+                    if (timespent.TotalSeconds >= calculator.PauseDuration)
+                    {
+                        IsUserInactive = true;
+
+                        if (!isStartToWorkRequired)
+                            logger.Info("User inactivity detected");
+
+                        isStartToWorkRequired = true;
+                        OnUserInactivity?.Invoke();
+                    }
+                    else
+                    {
+                        if (isStartToWorkRequired)
+                        {
+                            StartToWork();
+                            IsUserInactive = false;
+                            isStartToWorkRequired = false;
+                        }
+                    }
+
+                    Thread.Sleep(10000);
                 }
             });
         }
