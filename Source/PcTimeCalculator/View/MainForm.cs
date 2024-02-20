@@ -9,6 +9,8 @@ namespace PcTimeCalculator.View
 
         private delegate void voidMethodDelegate();
 
+        private int currentTime = 0;
+
         public MainForm()
         {
             InitializeComponent();
@@ -16,7 +18,7 @@ namespace PcTimeCalculator.View
             this.Disposed += MainForm_Disposed;
 
             controller = new Controller();
-            
+
             loggerViewer = new LoggerViewer(controller.GetLogger());
 
             controller.OnPauseStarted += Controller_OnPauseStarted;
@@ -28,9 +30,9 @@ namespace PcTimeCalculator.View
         private void MainForm_Disposed(object? sender, EventArgs e)
         {
             controller.ApplicationRunning = false;
-            timerProgressBar.Stop();
-            timerProgressBar.Enabled = false;
-            timerProgressBar.Dispose();
+            timer1s.Stop();
+            timer1s.Enabled = false;
+            timer1s.Dispose();
         }
 
         private void Controller_OnPauseEnded()
@@ -44,6 +46,7 @@ namespace PcTimeCalculator.View
 
                 ShowWorkTime();
                 StartProgressBar((int)controller.GetWorkTimeDuration());
+                ShowTimeRemaining(controller.GetWorkSecondsRemaining());
             }
             else BeginInvoke(Controller_OnPauseEnded);
         }
@@ -61,6 +64,7 @@ namespace PcTimeCalculator.View
 
                 ShowPauseTime();
                 StartProgressBar((int)controller.GetPauseDuration());
+                ShowTimeRemaining(controller.GetPauseSecondsRemaining());
 
                 Activate();
                 BringToFront();
@@ -79,7 +83,7 @@ namespace PcTimeCalculator.View
 
                 ShowNoTime();
                 progressBar.Value = 0;
-                timerProgressBar.Stop();
+                timer1s.Stop();
             }
             else BeginInvoke(Controller_OnUserInactivity);
         }
@@ -130,24 +134,38 @@ namespace PcTimeCalculator.View
             else BeginInvoke(new voidMethodDelegate(ShowNoTime));
         }
 
+        private void ShowTimeRemaining(int timeRemaining)
+        {
+            if (!InvokeRequired)
+            {
+                currentTime = timeRemaining;
+                lblTimeRemaining.Text = string.Format("{0} seconds left", currentTime);
+            }
+            else
+                BeginInvoke(new Action(() => ShowTimeRemaining(timeRemaining)));
+        }
+
         private void StartProgressBar(int maximum)
         {
             progressBar.Value = 0;
             progressBar.Maximum = maximum;
-            timerProgressBar.Start();
+            timer1s.Start();
         }
 
-        private void TimerProgressBar_Tick(object sender, EventArgs e)
+        private void Timer1Seconds_Tick(object sender, EventArgs e)
         {
             if (!InvokeRequired)
             {
                 progressBar.Increment(1);
 
                 if (progressBar.Value == progressBar.Maximum)
-                    timerProgressBar.Stop();
+                    timer1s.Stop();
+
+                currentTime -= 1;
+                lblTimeRemaining.Text = string.Format("{0} seconds left", currentTime);
             }
             else
-                BeginInvoke(TimerProgressBar_Tick);
+                BeginInvoke(Timer1Seconds_Tick);
         }
 
         private void LblStatus_Click(object sender, EventArgs e)

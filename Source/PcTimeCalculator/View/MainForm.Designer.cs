@@ -28,329 +28,349 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.tlpGeneral = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBoxWorkTime = new System.Windows.Forms.GroupBox();
-            this.tlpWorkTime = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblWorkTimeStart = new System.Windows.Forms.Label();
-            this.lblWorkTimeEnd = new System.Windows.Forms.Label();
-            this.groupBoxBreakTime = new System.Windows.Forms.GroupBox();
-            this.tlpBreakTime = new System.Windows.Forms.TableLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblPauseTimeStart = new System.Windows.Forms.Label();
-            this.lblPauseTimeEnd = new System.Windows.Forms.Label();
-            this.tlpFooter = new System.Windows.Forms.TableLayoutPanel();
-            this.btnTakeABreak = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.btnStartToWork = new System.Windows.Forms.Button();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.timerProgressBar = new System.Windows.Forms.Timer(this.components);
-            this.tlpGeneral.SuspendLayout();
-            this.groupBoxWorkTime.SuspendLayout();
-            this.tlpWorkTime.SuspendLayout();
-            this.groupBoxBreakTime.SuspendLayout();
-            this.tlpBreakTime.SuspendLayout();
-            this.tlpFooter.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            tlpGeneral = new TableLayoutPanel();
+            lblTimeRemaining = new Label();
+            groupBoxWorkTime = new GroupBox();
+            tlpWorkTime = new TableLayoutPanel();
+            label1 = new Label();
+            label2 = new Label();
+            lblWorkTimeStart = new Label();
+            lblWorkTimeEnd = new Label();
+            groupBoxBreakTime = new GroupBox();
+            tlpBreakTime = new TableLayoutPanel();
+            label3 = new Label();
+            label4 = new Label();
+            lblPauseTimeStart = new Label();
+            lblPauseTimeEnd = new Label();
+            tlpFooter = new TableLayoutPanel();
+            btnTakeABreak = new Button();
+            lblStatus = new Label();
+            btnStartToWork = new Button();
+            progressBar = new ProgressBar();
+            timer1s = new System.Windows.Forms.Timer(components);
+            tlpGeneral.SuspendLayout();
+            groupBoxWorkTime.SuspendLayout();
+            tlpWorkTime.SuspendLayout();
+            groupBoxBreakTime.SuspendLayout();
+            tlpBreakTime.SuspendLayout();
+            tlpFooter.SuspendLayout();
+            SuspendLayout();
             // 
             // tlpGeneral
             // 
-            this.tlpGeneral.ColumnCount = 1;
-            this.tlpGeneral.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpGeneral.Controls.Add(this.groupBoxWorkTime, 0, 0);
-            this.tlpGeneral.Controls.Add(this.groupBoxBreakTime, 0, 1);
-            this.tlpGeneral.Controls.Add(this.tlpFooter, 0, 3);
-            this.tlpGeneral.Controls.Add(this.progressBar, 0, 2);
-            this.tlpGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpGeneral.Location = new System.Drawing.Point(0, 0);
-            this.tlpGeneral.Name = "tlpGeneral";
-            this.tlpGeneral.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.tlpGeneral.RowCount = 4;
-            this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tlpGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tlpGeneral.Size = new System.Drawing.Size(802, 463);
-            this.tlpGeneral.TabIndex = 0;
+            tlpGeneral.ColumnCount = 2;
+            tlpGeneral.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tlpGeneral.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tlpGeneral.Controls.Add(lblTimeRemaining, 1, 2);
+            tlpGeneral.Controls.Add(groupBoxWorkTime, 0, 0);
+            tlpGeneral.Controls.Add(groupBoxBreakTime, 0, 1);
+            tlpGeneral.Controls.Add(tlpFooter, 0, 3);
+            tlpGeneral.Controls.Add(progressBar, 0, 2);
+            tlpGeneral.Dock = DockStyle.Fill;
+            tlpGeneral.Location = new Point(0, 0);
+            tlpGeneral.Name = "tlpGeneral";
+            tlpGeneral.Padding = new Padding(5, 0, 5, 0);
+            tlpGeneral.RowCount = 4;
+            tlpGeneral.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            tlpGeneral.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            tlpGeneral.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tlpGeneral.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            tlpGeneral.Size = new Size(802, 463);
+            tlpGeneral.TabIndex = 0;
+            // 
+            // lblTimeRemaining
+            // 
+            lblTimeRemaining.AutoSize = true;
+            lblTimeRemaining.BorderStyle = BorderStyle.Fixed3D;
+            lblTimeRemaining.Dock = DockStyle.Fill;
+            lblTimeRemaining.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblTimeRemaining.Location = new Point(562, 279);
+            lblTimeRemaining.Margin = new Padding(3);
+            lblTimeRemaining.Name = "lblTimeRemaining";
+            lblTimeRemaining.Size = new Size(232, 40);
+            lblTimeRemaining.TabIndex = 4;
+            lblTimeRemaining.Text = "- seconds left";
+            lblTimeRemaining.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // groupBoxWorkTime
             // 
-            this.groupBoxWorkTime.Controls.Add(this.tlpWorkTime);
-            this.groupBoxWorkTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxWorkTime.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxWorkTime.Location = new System.Drawing.Point(8, 3);
-            this.groupBoxWorkTime.Name = "groupBoxWorkTime";
-            this.groupBoxWorkTime.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.groupBoxWorkTime.Size = new System.Drawing.Size(786, 132);
-            this.groupBoxWorkTime.TabIndex = 0;
-            this.groupBoxWorkTime.TabStop = false;
-            this.groupBoxWorkTime.Text = "Work Time:";
+            tlpGeneral.SetColumnSpan(groupBoxWorkTime, 2);
+            groupBoxWorkTime.Controls.Add(tlpWorkTime);
+            groupBoxWorkTime.Dock = DockStyle.Fill;
+            groupBoxWorkTime.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBoxWorkTime.Location = new Point(8, 3);
+            groupBoxWorkTime.Name = "groupBoxWorkTime";
+            groupBoxWorkTime.Padding = new Padding(10, 3, 10, 3);
+            groupBoxWorkTime.Size = new Size(786, 132);
+            groupBoxWorkTime.TabIndex = 0;
+            groupBoxWorkTime.TabStop = false;
+            groupBoxWorkTime.Text = "Work Time:";
             // 
             // tlpWorkTime
             // 
-            this.tlpWorkTime.ColumnCount = 2;
-            this.tlpWorkTime.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tlpWorkTime.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tlpWorkTime.Controls.Add(this.label1, 0, 0);
-            this.tlpWorkTime.Controls.Add(this.label2, 0, 1);
-            this.tlpWorkTime.Controls.Add(this.lblWorkTimeStart, 1, 0);
-            this.tlpWorkTime.Controls.Add(this.lblWorkTimeEnd, 1, 1);
-            this.tlpWorkTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpWorkTime.Location = new System.Drawing.Point(10, 23);
-            this.tlpWorkTime.Name = "tlpWorkTime";
-            this.tlpWorkTime.RowCount = 2;
-            this.tlpWorkTime.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpWorkTime.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpWorkTime.Size = new System.Drawing.Size(766, 106);
-            this.tlpWorkTime.TabIndex = 0;
+            tlpWorkTime.ColumnCount = 2;
+            tlpWorkTime.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tlpWorkTime.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tlpWorkTime.Controls.Add(label1, 0, 0);
+            tlpWorkTime.Controls.Add(label2, 0, 1);
+            tlpWorkTime.Controls.Add(lblWorkTimeStart, 1, 0);
+            tlpWorkTime.Controls.Add(lblWorkTimeEnd, 1, 1);
+            tlpWorkTime.Dock = DockStyle.Fill;
+            tlpWorkTime.Location = new Point(10, 23);
+            tlpWorkTime.Name = "tlpWorkTime";
+            tlpWorkTime.RowCount = 2;
+            tlpWorkTime.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpWorkTime.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpWorkTime.Size = new Size(766, 106);
+            tlpWorkTime.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 3);
-            this.label1.Margin = new System.Windows.Forms.Padding(3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(530, 47);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Work Time Start:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label1.AutoSize = true;
+            label1.BorderStyle = BorderStyle.FixedSingle;
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Italic, GraphicsUnit.Point);
+            label1.Location = new Point(3, 3);
+            label1.Margin = new Padding(3);
+            label1.Name = "label1";
+            label1.Size = new Size(530, 47);
+            label1.TabIndex = 0;
+            label1.Text = "Work Time Start:";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(3, 56);
-            this.label2.Margin = new System.Windows.Forms.Padding(3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(530, 47);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Work Time Stop:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label2.AutoSize = true;
+            label2.BorderStyle = BorderStyle.FixedSingle;
+            label2.Dock = DockStyle.Fill;
+            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Italic, GraphicsUnit.Point);
+            label2.Location = new Point(3, 56);
+            label2.Margin = new Padding(3);
+            label2.Name = "label2";
+            label2.Size = new Size(530, 47);
+            label2.TabIndex = 1;
+            label2.Text = "Work Time Stop:";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblWorkTimeStart
             // 
-            this.lblWorkTimeStart.AutoSize = true;
-            this.lblWorkTimeStart.BackColor = System.Drawing.Color.Coral;
-            this.lblWorkTimeStart.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblWorkTimeStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWorkTimeStart.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.lblWorkTimeStart.Location = new System.Drawing.Point(539, 3);
-            this.lblWorkTimeStart.Margin = new System.Windows.Forms.Padding(3);
-            this.lblWorkTimeStart.Name = "lblWorkTimeStart";
-            this.lblWorkTimeStart.Size = new System.Drawing.Size(224, 47);
-            this.lblWorkTimeStart.TabIndex = 2;
-            this.lblWorkTimeStart.Text = "00:00:00";
-            this.lblWorkTimeStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblWorkTimeStart.AutoSize = true;
+            lblWorkTimeStart.BackColor = Color.Coral;
+            lblWorkTimeStart.BorderStyle = BorderStyle.Fixed3D;
+            lblWorkTimeStart.Dock = DockStyle.Fill;
+            lblWorkTimeStart.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblWorkTimeStart.Location = new Point(539, 3);
+            lblWorkTimeStart.Margin = new Padding(3);
+            lblWorkTimeStart.Name = "lblWorkTimeStart";
+            lblWorkTimeStart.Size = new Size(224, 47);
+            lblWorkTimeStart.TabIndex = 2;
+            lblWorkTimeStart.Text = "00:00:00";
+            lblWorkTimeStart.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblWorkTimeEnd
             // 
-            this.lblWorkTimeEnd.AutoSize = true;
-            this.lblWorkTimeEnd.BackColor = System.Drawing.Color.OrangeRed;
-            this.lblWorkTimeEnd.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblWorkTimeEnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWorkTimeEnd.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.lblWorkTimeEnd.Location = new System.Drawing.Point(539, 56);
-            this.lblWorkTimeEnd.Margin = new System.Windows.Forms.Padding(3);
-            this.lblWorkTimeEnd.Name = "lblWorkTimeEnd";
-            this.lblWorkTimeEnd.Size = new System.Drawing.Size(224, 47);
-            this.lblWorkTimeEnd.TabIndex = 3;
-            this.lblWorkTimeEnd.Text = "00:00:00";
-            this.lblWorkTimeEnd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblWorkTimeEnd.AutoSize = true;
+            lblWorkTimeEnd.BackColor = Color.OrangeRed;
+            lblWorkTimeEnd.BorderStyle = BorderStyle.Fixed3D;
+            lblWorkTimeEnd.Dock = DockStyle.Fill;
+            lblWorkTimeEnd.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblWorkTimeEnd.Location = new Point(539, 56);
+            lblWorkTimeEnd.Margin = new Padding(3);
+            lblWorkTimeEnd.Name = "lblWorkTimeEnd";
+            lblWorkTimeEnd.Size = new Size(224, 47);
+            lblWorkTimeEnd.TabIndex = 3;
+            lblWorkTimeEnd.Text = "00:00:00";
+            lblWorkTimeEnd.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // groupBoxBreakTime
             // 
-            this.groupBoxBreakTime.Controls.Add(this.tlpBreakTime);
-            this.groupBoxBreakTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxBreakTime.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBoxBreakTime.Location = new System.Drawing.Point(8, 141);
-            this.groupBoxBreakTime.Name = "groupBoxBreakTime";
-            this.groupBoxBreakTime.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.groupBoxBreakTime.Size = new System.Drawing.Size(786, 132);
-            this.groupBoxBreakTime.TabIndex = 1;
-            this.groupBoxBreakTime.TabStop = false;
-            this.groupBoxBreakTime.Text = "Break:";
+            tlpGeneral.SetColumnSpan(groupBoxBreakTime, 2);
+            groupBoxBreakTime.Controls.Add(tlpBreakTime);
+            groupBoxBreakTime.Dock = DockStyle.Fill;
+            groupBoxBreakTime.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBoxBreakTime.Location = new Point(8, 141);
+            groupBoxBreakTime.Name = "groupBoxBreakTime";
+            groupBoxBreakTime.Padding = new Padding(10, 3, 10, 3);
+            groupBoxBreakTime.Size = new Size(786, 132);
+            groupBoxBreakTime.TabIndex = 1;
+            groupBoxBreakTime.TabStop = false;
+            groupBoxBreakTime.Text = "Break:";
             // 
             // tlpBreakTime
             // 
-            this.tlpBreakTime.ColumnCount = 2;
-            this.tlpBreakTime.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tlpBreakTime.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tlpBreakTime.Controls.Add(this.label3, 0, 0);
-            this.tlpBreakTime.Controls.Add(this.label4, 0, 1);
-            this.tlpBreakTime.Controls.Add(this.lblPauseTimeStart, 1, 0);
-            this.tlpBreakTime.Controls.Add(this.lblPauseTimeEnd, 1, 1);
-            this.tlpBreakTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpBreakTime.Location = new System.Drawing.Point(10, 23);
-            this.tlpBreakTime.Name = "tlpBreakTime";
-            this.tlpBreakTime.RowCount = 2;
-            this.tlpBreakTime.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBreakTime.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpBreakTime.Size = new System.Drawing.Size(766, 106);
-            this.tlpBreakTime.TabIndex = 0;
+            tlpBreakTime.ColumnCount = 2;
+            tlpBreakTime.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
+            tlpBreakTime.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tlpBreakTime.Controls.Add(label3, 0, 0);
+            tlpBreakTime.Controls.Add(label4, 0, 1);
+            tlpBreakTime.Controls.Add(lblPauseTimeStart, 1, 0);
+            tlpBreakTime.Controls.Add(lblPauseTimeEnd, 1, 1);
+            tlpBreakTime.Dock = DockStyle.Fill;
+            tlpBreakTime.Location = new Point(10, 23);
+            tlpBreakTime.Name = "tlpBreakTime";
+            tlpBreakTime.RowCount = 2;
+            tlpBreakTime.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpBreakTime.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpBreakTime.Size = new Size(766, 106);
+            tlpBreakTime.TabIndex = 0;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(3, 3);
-            this.label3.Margin = new System.Windows.Forms.Padding(3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(530, 47);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Break Start:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label3.AutoSize = true;
+            label3.BorderStyle = BorderStyle.FixedSingle;
+            label3.Dock = DockStyle.Fill;
+            label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Italic, GraphicsUnit.Point);
+            label3.Location = new Point(3, 3);
+            label3.Margin = new Padding(3);
+            label3.Name = "label3";
+            label3.Size = new Size(530, 47);
+            label3.TabIndex = 0;
+            label3.Text = "Break Start:";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(3, 56);
-            this.label4.Margin = new System.Windows.Forms.Padding(3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(530, 47);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Break Stop:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label4.AutoSize = true;
+            label4.BorderStyle = BorderStyle.FixedSingle;
+            label4.Dock = DockStyle.Fill;
+            label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Italic, GraphicsUnit.Point);
+            label4.Location = new Point(3, 56);
+            label4.Margin = new Padding(3);
+            label4.Name = "label4";
+            label4.Size = new Size(530, 47);
+            label4.TabIndex = 1;
+            label4.Text = "Break Stop:";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblPauseTimeStart
             // 
-            this.lblPauseTimeStart.AutoSize = true;
-            this.lblPauseTimeStart.BackColor = System.Drawing.Color.LightGreen;
-            this.lblPauseTimeStart.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPauseTimeStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPauseTimeStart.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.lblPauseTimeStart.Location = new System.Drawing.Point(539, 3);
-            this.lblPauseTimeStart.Margin = new System.Windows.Forms.Padding(3);
-            this.lblPauseTimeStart.Name = "lblPauseTimeStart";
-            this.lblPauseTimeStart.Size = new System.Drawing.Size(224, 47);
-            this.lblPauseTimeStart.TabIndex = 2;
-            this.lblPauseTimeStart.Text = "00:00:00";
-            this.lblPauseTimeStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblPauseTimeStart.AutoSize = true;
+            lblPauseTimeStart.BackColor = Color.LightGreen;
+            lblPauseTimeStart.BorderStyle = BorderStyle.Fixed3D;
+            lblPauseTimeStart.Dock = DockStyle.Fill;
+            lblPauseTimeStart.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblPauseTimeStart.Location = new Point(539, 3);
+            lblPauseTimeStart.Margin = new Padding(3);
+            lblPauseTimeStart.Name = "lblPauseTimeStart";
+            lblPauseTimeStart.Size = new Size(224, 47);
+            lblPauseTimeStart.TabIndex = 2;
+            lblPauseTimeStart.Text = "00:00:00";
+            lblPauseTimeStart.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblPauseTimeEnd
             // 
-            this.lblPauseTimeEnd.AutoSize = true;
-            this.lblPauseTimeEnd.BackColor = System.Drawing.Color.LimeGreen;
-            this.lblPauseTimeEnd.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPauseTimeEnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPauseTimeEnd.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.lblPauseTimeEnd.Location = new System.Drawing.Point(539, 56);
-            this.lblPauseTimeEnd.Margin = new System.Windows.Forms.Padding(3);
-            this.lblPauseTimeEnd.Name = "lblPauseTimeEnd";
-            this.lblPauseTimeEnd.Size = new System.Drawing.Size(224, 47);
-            this.lblPauseTimeEnd.TabIndex = 3;
-            this.lblPauseTimeEnd.Text = "00:00:00";
-            this.lblPauseTimeEnd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblPauseTimeEnd.AutoSize = true;
+            lblPauseTimeEnd.BackColor = Color.LimeGreen;
+            lblPauseTimeEnd.BorderStyle = BorderStyle.Fixed3D;
+            lblPauseTimeEnd.Dock = DockStyle.Fill;
+            lblPauseTimeEnd.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblPauseTimeEnd.Location = new Point(539, 56);
+            lblPauseTimeEnd.Margin = new Padding(3);
+            lblPauseTimeEnd.Name = "lblPauseTimeEnd";
+            lblPauseTimeEnd.Size = new Size(224, 47);
+            lblPauseTimeEnd.TabIndex = 3;
+            lblPauseTimeEnd.Text = "00:00:00";
+            lblPauseTimeEnd.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tlpFooter
             // 
-            this.tlpFooter.ColumnCount = 2;
-            this.tlpFooter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFooter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFooter.Controls.Add(this.btnTakeABreak, 0, 0);
-            this.tlpFooter.Controls.Add(this.lblStatus, 1, 0);
-            this.tlpFooter.Controls.Add(this.btnStartToWork, 0, 1);
-            this.tlpFooter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFooter.Location = new System.Drawing.Point(8, 325);
-            this.tlpFooter.Name = "tlpFooter";
-            this.tlpFooter.RowCount = 2;
-            this.tlpFooter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFooter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpFooter.Size = new System.Drawing.Size(786, 135);
-            this.tlpFooter.TabIndex = 2;
+            tlpFooter.ColumnCount = 2;
+            tlpGeneral.SetColumnSpan(tlpFooter, 2);
+            tlpFooter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpFooter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tlpFooter.Controls.Add(btnTakeABreak, 0, 0);
+            tlpFooter.Controls.Add(lblStatus, 1, 0);
+            tlpFooter.Controls.Add(btnStartToWork, 0, 1);
+            tlpFooter.Dock = DockStyle.Fill;
+            tlpFooter.Location = new Point(8, 325);
+            tlpFooter.Name = "tlpFooter";
+            tlpFooter.RowCount = 2;
+            tlpFooter.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpFooter.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tlpFooter.Size = new Size(786, 135);
+            tlpFooter.TabIndex = 2;
             // 
             // btnTakeABreak
             // 
-            this.btnTakeABreak.BackColor = System.Drawing.Color.LightBlue;
-            this.btnTakeABreak.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnTakeABreak.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTakeABreak.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnTakeABreak.Location = new System.Drawing.Point(7, 7);
-            this.btnTakeABreak.Margin = new System.Windows.Forms.Padding(7);
-            this.btnTakeABreak.Name = "btnTakeABreak";
-            this.btnTakeABreak.Size = new System.Drawing.Size(379, 53);
-            this.btnTakeABreak.TabIndex = 0;
-            this.btnTakeABreak.Text = "Take a break";
-            this.btnTakeABreak.UseVisualStyleBackColor = false;
-            this.btnTakeABreak.Click += new System.EventHandler(this.BtnTakeABreak_Click);
+            btnTakeABreak.BackColor = Color.LightBlue;
+            btnTakeABreak.Dock = DockStyle.Fill;
+            btnTakeABreak.FlatStyle = FlatStyle.Flat;
+            btnTakeABreak.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTakeABreak.Location = new Point(0, 7);
+            btnTakeABreak.Margin = new Padding(0, 7, 7, 7);
+            btnTakeABreak.Name = "btnTakeABreak";
+            btnTakeABreak.Size = new Size(386, 53);
+            btnTakeABreak.TabIndex = 0;
+            btnTakeABreak.Text = "Take a break";
+            btnTakeABreak.UseVisualStyleBackColor = false;
+            btnTakeABreak.Click += BtnTakeABreak_Click;
             // 
             // lblStatus
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.lblStatus.Location = new System.Drawing.Point(396, 3);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(3);
-            this.lblStatus.Name = "lblStatus";
-            this.tlpFooter.SetRowSpan(this.lblStatus, 2);
-            this.lblStatus.Size = new System.Drawing.Size(387, 129);
-            this.lblStatus.TabIndex = 1;
-            this.lblStatus.Text = "Status";
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblStatus.Click += new System.EventHandler(this.LblStatus_Click);
+            lblStatus.AutoSize = true;
+            lblStatus.BorderStyle = BorderStyle.FixedSingle;
+            lblStatus.Dock = DockStyle.Fill;
+            lblStatus.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            lblStatus.Location = new Point(396, 3);
+            lblStatus.Margin = new Padding(3, 3, 0, 3);
+            lblStatus.Name = "lblStatus";
+            tlpFooter.SetRowSpan(lblStatus, 2);
+            lblStatus.Size = new Size(390, 129);
+            lblStatus.TabIndex = 1;
+            lblStatus.Text = "Status";
+            lblStatus.TextAlign = ContentAlignment.MiddleCenter;
+            lblStatus.Click += LblStatus_Click;
             // 
             // btnStartToWork
             // 
-            this.btnStartToWork.BackColor = System.Drawing.Color.LightBlue;
-            this.btnStartToWork.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnStartToWork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartToWork.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnStartToWork.Location = new System.Drawing.Point(7, 74);
-            this.btnStartToWork.Margin = new System.Windows.Forms.Padding(7);
-            this.btnStartToWork.Name = "btnStartToWork";
-            this.btnStartToWork.Size = new System.Drawing.Size(379, 54);
-            this.btnStartToWork.TabIndex = 2;
-            this.btnStartToWork.Text = "Start to Work";
-            this.btnStartToWork.UseVisualStyleBackColor = false;
-            this.btnStartToWork.Click += new System.EventHandler(this.BtnStartToWork_Click);
+            btnStartToWork.BackColor = Color.LightBlue;
+            btnStartToWork.Dock = DockStyle.Fill;
+            btnStartToWork.FlatStyle = FlatStyle.Flat;
+            btnStartToWork.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnStartToWork.Location = new Point(0, 74);
+            btnStartToWork.Margin = new Padding(0, 7, 7, 7);
+            btnStartToWork.Name = "btnStartToWork";
+            btnStartToWork.Size = new Size(386, 54);
+            btnStartToWork.TabIndex = 2;
+            btnStartToWork.Text = "Start to Work";
+            btnStartToWork.UseVisualStyleBackColor = false;
+            btnStartToWork.Click += BtnStartToWork_Click;
             // 
             // progressBar
             // 
-            this.progressBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar.Location = new System.Drawing.Point(15, 281);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(772, 36);
-            this.progressBar.TabIndex = 3;
+            progressBar.Dock = DockStyle.Fill;
+            progressBar.Location = new Point(8, 281);
+            progressBar.Margin = new Padding(3, 5, 10, 5);
+            progressBar.Name = "progressBar";
+            progressBar.Size = new Size(541, 36);
+            progressBar.TabIndex = 3;
             // 
-            // timerProgressBar
+            // timer1s
             // 
-            this.timerProgressBar.Interval = 1000;
-            this.timerProgressBar.Tick += new System.EventHandler(this.TimerProgressBar_Tick);
+            timer1s.Interval = 1000;
+            timer1s.Tick += Timer1Seconds_Tick;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 463);
-            this.Controls.Add(this.tlpGeneral);
-            this.Name = "MainForm";
-            this.ShowIcon = false;
-            this.Text = "PC Time Calculator";
-            this.tlpGeneral.ResumeLayout(false);
-            this.groupBoxWorkTime.ResumeLayout(false);
-            this.tlpWorkTime.ResumeLayout(false);
-            this.tlpWorkTime.PerformLayout();
-            this.groupBoxBreakTime.ResumeLayout(false);
-            this.tlpBreakTime.ResumeLayout(false);
-            this.tlpBreakTime.PerformLayout();
-            this.tlpFooter.ResumeLayout(false);
-            this.tlpFooter.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(802, 463);
+            Controls.Add(tlpGeneral);
+            Name = "MainForm";
+            ShowIcon = false;
+            Text = "PC Time Calculator";
+            tlpGeneral.ResumeLayout(false);
+            tlpGeneral.PerformLayout();
+            groupBoxWorkTime.ResumeLayout(false);
+            tlpWorkTime.ResumeLayout(false);
+            tlpWorkTime.PerformLayout();
+            groupBoxBreakTime.ResumeLayout(false);
+            tlpBreakTime.ResumeLayout(false);
+            tlpBreakTime.PerformLayout();
+            tlpFooter.ResumeLayout(false);
+            tlpFooter.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -373,6 +393,7 @@
         private Label lblStatus;
         private Button btnStartToWork;
         private ProgressBar progressBar;
-        private System.Windows.Forms.Timer timerProgressBar;
+        private System.Windows.Forms.Timer timer1s;
+        private Label lblTimeRemaining;
     }
 }
