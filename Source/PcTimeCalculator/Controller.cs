@@ -22,7 +22,7 @@ namespace PcTimeCalculator
 
         public Controller()
         {
-            calculator = new Model.TimeCalculator();
+            calculator = new TimeCalculator();
             logger = new MemoryLogger();
 
             ApplicationRunning = true;
@@ -66,12 +66,22 @@ namespace PcTimeCalculator
             return calculator.PauseDuration;
         }
 
+        public int GetWorkSecondsRemaining()
+        {
+            return (int)calculator.GetWorkTimeRemaining();
+        }
+
+        public int GetPauseSecondsRemaining()
+        {
+            return (int)calculator.GetPauseTimeRemaining();
+        }
+
         public ILogger GetLogger()
         {
             return logger;
         }
 
-        #endregion
+        #endregion Getters
 
         public void StartToWork()
         {

@@ -33,7 +33,7 @@ namespace PcTimeCalculator.Model
 
         public void TakeABreak()
         {
-            lock(_lock)
+            lock (_lock)
             {
                 WorkTimeStart = DateTime.Now.AddSeconds(PauseDuration);
                 WorkTimeEnd = WorkTimeStart.AddSeconds(WorkTimeDuration);
@@ -57,6 +57,16 @@ namespace PcTimeCalculator.Model
             {
                 return (DateTime.Now - BreakTimeEnd).TotalMilliseconds > 0;
             }
+        }
+
+        public double GetWorkTimeRemaining()
+        {
+            return (WorkTimeEnd - DateTime.Now).TotalSeconds;
+        }
+
+        public double GetPauseTimeRemaining()
+        {
+            return (BreakTimeEnd - DateTime.Now).TotalSeconds;
         }
 
         private void LoadConfiguration()

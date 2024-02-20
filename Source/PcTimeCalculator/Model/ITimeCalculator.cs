@@ -18,5 +18,9 @@
 
         public bool IsTimeToGoBackToWork();
 
+        public double GetWorkTimeRemaining();
+
+        public double GetPauseTimeRemaining();
+
     }
 }
